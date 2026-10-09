@@ -48,10 +48,10 @@ public:
     }
 
     // Getter
-    int getID () {return id;}
-    string getName () {return name;}
-    string getColor () {return color;}
-    string getCharacteristic () {return characteristic;}
+    int getID () const {return id;}
+    string getName () const {return name;}
+    string getColor () const {return color;}
+    string getCharacteristic () const {return characteristic;}
 
     // Setter
     void setID (int i) {id = i;}
@@ -60,7 +60,7 @@ public:
     void setCharacteristic (string ch) {characteristic = ch;}
 
     // Display
-    void displayFishInfo(){
+    void displayFishInfo() const {
         cout << " ID               : " << id << endl;
         cout << " | Name           : " << name << endl;
         cout << " | Color          : " << color << endl;
@@ -69,39 +69,51 @@ public:
 };
 
 int main(){
-    // 1. Create 5 Fish objects
-    Fish fish1;
-    Fish fish2 (113);
-    Fish fish3 (114, "Olise");
-    Fish fish4 (115, "Iniesta", "Blue");
-    Fish fish5 (116, "Musiala", "Red", "Curly Hair");
+    // 5 ca ban dau
+    vector<Fish> fishList = {
+        Fish(100, "Kevin", "Purple", "Wearing glasses"),
+        Fish(113, "N/A", "N/A", "N/A"),
+        Fish(114, "Olise", "N/A", "N/A"),
+        Fish(115, "Iniesta", "Blue", "N/A"),
+        Fish(116, "Musiala", "Red", "Curly Hair")
+    };
 
-    // 2. Call displayFishInfo() to display the information of all 5 objects.
-    cout << "===== 5 FISHES INFO =====" << endl;
-    fish1.displayFishInfo();
-    fish2.displayFishInfo();
-    fish3.displayFishInfo();
-    fish4.displayFishInfo();
-    fish5.displayFishInfo();
+    // Q6: Them 10 loai ca canh moi
+    fishList.push_back(Fish(101, "Goldfish", "Red", "Friendly"));
+    fishList.push_back(Fish(102, "Betta", "Blue", "Aggressive"));
+    fishList.push_back(Fish(103, "Guppy", "Red", "Small size"));
+    fishList.push_back(Fish(104, "Angelfish", "Yellow", "Long fins"));
+    fishList.push_back(Fish(105, "Neon Tetra", "Blue", "Glowing body"));
+    fishList.push_back(Fish(106, "Clownfish", "Orange", "Active"));
+    fishList.push_back(Fish(107, "Blue Tang", "Blue", "Fast swimmer"));
+    fishList.push_back(Fish(108, "Discus", "Yellow", "Flat body"));
+    fishList.push_back(Fish(109, "Koi", "Orange", "Large size"));
+    fishList.push_back(Fish(110, "Molly", "Black", "Easy to care"));
 
-    // 3. Use the setter methods to update the name, color, and characteristics of one object
-    fish1.setID (100);
-    fish1.setName ("Kevin");
-    fish1.setColor ("Purple");
-    fish1.setCharacteristic ("Wearing glasses");
+    // Q6: Nhom va hien thi ca theo mau sac
+    cout << "\n===== GROUP FISH BY COLOR =====\n";
+    vector<string> colors;
+    for (const Fish& f : fishList) {
+        bool exists = false;
+        for (const string& c : colors) {
+            if (c == f.getColor()) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists && f.getColor() != "" && f.getColor() != "N/A") {
+            colors.push_back(f.getColor());
+        }
+    }
 
-    // 4. Use the getter methods to retrieve and print the information of the updated object.
-    cout << "\n ===== USING GETTER TO GET FISH1 INFO =====" << endl;
-    cout << " ID            : " << fish1.getID() << endl;
-    cout << " Name          : " << fish1.getName() << endl;
-    cout << " Color         : " << fish1.getColor() << endl;
-    cout << " Characteristc : " << fish1.getCharacteristic() << endl;
-
-    // 5. Call displayFishInfo() again to verify the changes.
-    cout << "\n === CHECK FISH1 INFO BY displayFishInfo() ===" << endl;
-    fish1.displayFishInfo();
-
-    cout << endl;
+    for (const string& color : colors) {
+        cout << "\n--- COLOR: " << color << " ---\n";
+        for (const Fish& f : fishList) {
+            if (f.getColor() == color) {
+                f.displayFishInfo();
+            }
+        }
+    }
 
     return 0;
 }
