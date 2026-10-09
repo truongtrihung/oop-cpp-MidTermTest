@@ -100,6 +100,8 @@ int main(){
     // 5. Call displayFishInfo() again to verify the changes.
     cout << "\n === CHECK FISH1 INFO BY displayFishInfo() ===" << endl;
     fish1.displayFishInfo();
-    
+
+    cout << endl;
+
     return 0;
 }
