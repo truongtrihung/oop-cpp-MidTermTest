@@ -11,9 +11,20 @@ private:
     string description;
 
 public:
-    Category() : categoryId(0), categoryName(""), description("") {}
-    Category(int id, string name, string desc) : categoryId(id), categoryName(name), description(desc) {}
+   // Default constructor
+    Category() {
+        categoryId = 0;
+        categoryName = "";
+        description = "";
+    }
 
+    // Constructor with parameters
+    Category(int id, string name, string desc) {
+        categoryId = id;
+        categoryName = name;
+        description = desc;
+    }
+    
     int getCategoryId() const { return categoryId; }
     string getCategoryName() const { return categoryName; }
     string getDescription() const { return description; }
@@ -35,15 +46,57 @@ private:
     string name;
     string color;
     string characteristic;
-    int categoryId;
+    int categoryId; // Q7: Thuoc tinh moi
 
 public:
-    Fish() : id(0), name(""), color(""), characteristic(""), categoryId(0) {}
-    Fish(int i) : id(i), name(""), color(""), characteristic(""), categoryId(0) {}
-    Fish(int i, string n) : id(i), name(n), color(""), characteristic(""), categoryId(0) {}
-    Fish(int i, string n, string c) : id(i), name(n), color(c), characteristic(""), categoryId(0) {}
-    Fish(int i, string n, string c, string ch) : id(i), name(n), color(c), characteristic(ch), categoryId(0) {}
-    Fish(int i, string n, string c, string ch, int catId) : id(i), name(n), color(c), characteristic(ch), categoryId(catId) {}
+    // Constructors: các hàm khởi tạo dữ liệu
+    Fish() {
+        id = 0;
+        name = "";
+        color = "";
+        characteristic = "";
+        categoryId = 0;
+    }
+    // A constructor with 1 parameter
+    Fish(int i) {
+        id = i;
+        name = "";
+        color = "";
+        characteristic = "";
+        categoryId = 0;
+    }
+    // A constructor with 2 parameters
+    Fish(int i, string n) {
+        id = i;
+        name = n;
+        color = "";
+        characteristic = "";
+        categoryId = 0;
+    }
+    // A constructor with 3 parameters
+    Fish(int i, string n, string c) {
+        id = i;
+        name = n;
+        color = c;
+        characteristic = "";
+        categoryId = 0;
+    }
+    // A constructor with all 4 parameters
+    Fish(int i, string n, string c, string ch) {
+        id = i;
+        name = n;
+        color = c;
+        characteristic = ch;
+        categoryId = 0;
+    }
+    // A constructor with 5 parameters (including categoryId)
+    Fish(int i, string n, string c, string ch, int catId) {
+        id = i;
+        name = n;
+        color = c;
+        characteristic = ch;
+        categoryId = catId;
+    }
 
     // Getter
     int getID() const { return id; }
